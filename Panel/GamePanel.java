@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
     private JPanel p = new JPanel(new GridLayout(2,1));
     private JPanel ptf = new JPanel(new FlowLayout());
     private JPanel p1 = new JPanel(new GridLayout(2,1));
-    private String[] color = {"CYAN","GREEN", "BLUE", "RED", "YELLOW", "ORANGE"};
+    private String[] color = {"Choose Color","CYAN","GREEN", "BLUE", "RED", "YELLOW", "ORANGE"};
     private JComboBox<String> colorbox = new JComboBox<>(color);
     private int time = 1000;
     private Timer timer = new Timer(500, this);;
@@ -92,7 +92,9 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (colorbox.getSelectedItem() == "CYAN" && e.getStateChange() == 1){
+        if (colorbox.getSelectedItem() == "Choose Color" && e.getStateChange() == 1){
+            tetris.col = null;
+        }else if (colorbox.getSelectedItem() == "CYAN" && e.getStateChange() == 1){
             tetris.col = Color.CYAN;
         }else if (colorbox.getSelectedItem() == "GREEN" && e.getStateChange() == 1){
             tetris.col = Color.GREEN;
@@ -109,3 +111,4 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
         tetris.requestFocusInWindow();
     }
 }
+
