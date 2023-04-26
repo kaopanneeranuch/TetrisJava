@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
     private String[] color = {"Choose Color","CYAN","GREEN", "BLUE", "RED", "YELLOW", "ORANGE"};
     private JComboBox<String> colorbox = new JComboBox<>(color);
     private int time = 1000;
-    private Timer timer = new Timer(time, this);;
+    private Timer timer = new Timer(1000, this);;
 
     GamePanel(){
         setLayout(new BorderLayout());
