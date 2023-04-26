@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
     private String[] color = {"Choose Color","CYAN","GREEN", "BLUE", "RED", "YELLOW", "ORANGE"};
     private JComboBox<String> colorbox = new JComboBox<>(color);
     private int time = 1000;
-    private Timer timer = new Timer(500, this);;
+    private Timer timer = new Timer(time, this);;
 
     GamePanel(){
         setLayout(new BorderLayout());
@@ -56,6 +56,17 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
 
     }
 
+    private void setRestart(){
+        score = 0;
+        level = 0;
+        scorelb.setText("Score: " + score);
+        levellb.setText("Level: " + level);
+        tetris.reStart();
+        time = 1000;
+        timer.setDelay(time);
+        timer.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer){
@@ -78,15 +89,14 @@ public class GamePanel extends JPanel implements ActionListener, ItemListener{
                 timer.stop();
             }
         }else if (e.getSource() == newbt){
-            score = 0;
-            level = 0;
-            scorelb.setText("Score: " + score);
-            levellb.setText("Level: " + level);
-            tetris.reStart();
-            timer.restart();
+            setRestart();
         }else if (e.getSource() == startbt){
-            tetris.timer.start();
-            tetris.requestFocusInWindow();
+            if (tetris.checkGameOver == true){
+                setRestart();
+            }else{
+                tetris.timer.start();
+                tetris.requestFocusInWindow();
+            }
         }
     }
 

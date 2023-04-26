@@ -305,10 +305,6 @@ public class Tetris extends JPanel implements ActionListener, KeyListener{
             }else if(e.getKeyCode() == KeyEvent.VK_UP){
                 rotate();
                 repaint();
-            //}
-            }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                y += grid;
-                repaint();
             }
         }
     }
